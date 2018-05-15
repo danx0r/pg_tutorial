@@ -8,8 +8,20 @@ except:
 print (conn)
 
 cur = conn.cursor()
-cur.execute("""SELECT datname from pg_database""")
+X = cur.execute
+
+X("SELECT datname from pg_database")
 rows = cur.fetchall()
 print ("\nShow me the databases:\n")
 for row in rows:
     print ("   ", row[0])
+
+X("drop table ttest")
+X("create table ttest(foo text, bar int)")
+X("insert into ttest values ('xoxy', 123)")
+X("insert into ttest values ('Souza Bartholomew', 456)")
+X("SELECT * from ttest")
+rows = cur.fetchall()
+print ("\nShow me the data:\n")
+for row in rows:
+    print ("   ", row)
